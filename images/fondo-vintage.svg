@@ -1,0 +1,7 @@
+<svg viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 Q250,300 500,100 T1000,400 L1000,1000 L0,1000 Z" fill="#e86a1a" />
+  <path d="M0,200 Q300,500 600,300 T1000,600 L1000,1000 L0,1000 Z" fill="#f2e8cf" />
+  <path d="M0,450 Q200,700 500,550 T1000,850 L1000,1000 L0,1000 Z" fill="#0d5c56" />
+  <path d="M0,700 Q400,950 800,750 T1000,950 L1000,1000 L0,1000 Z" fill="#e86a1a" />
+  <path d="M0,850 Q300,1000 700,900 T1000,1050 L1000,1000 L0,1000 Z" fill="#f2e8cf" />
+</svg>

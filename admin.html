@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador – Migas &amp; Sabores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <!-- Login: se muestra si no hay sesión -->
+  <div id="admin-login" class="admin-login">
+    <div class="admin-card">
+      <h1 class="admin-title">Acceso administrador</h1>
+      <p class="admin-subtitle">Panel de catálogo Migas &amp; Sabores</p>
+      <form id="admin-login-form" class="admin-form">
+        <div class="form-group">
+          <label for="admin-user">Usuario</label>
+          <input type="text" id="admin-user" autocomplete="username" required placeholder="Usuario">
+        </div>
+        <div class="form-group">
+          <label for="admin-pass">Contraseña</label>
+          <input type="password" id="admin-pass" autocomplete="current-password" required placeholder="Contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <p id="admin-login-error" class="form-error" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal primero en el DOM para evitar problemas de orden -->
+  <div id="product-modal" class="modal-overlay modal-hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" role="document" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modal-title">Nuevo producto</h2>
+        <button type="button" id="modal-close" class="modal-close" aria-label="Cerrar">&times;</button>
+      </div>
+      <form id="product-form" class="modal-form">
+        <input type="hidden" id="product-id">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="product-name">Nombre</label>
+            <input type="text" id="product-name" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="product-description">Descripción</label>
+            <textarea id="product-description" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="product-price-minorista">Precio minorista (minorista.html)</label>
+            <input type="number" id="product-price-minorista" min="0" step="0.01" required placeholder="0">
+          </div>
+          <div class="form-group">
+            <label for="product-price-mayorista">Precio mayorista (mayorista.html)</label>
+            <input type="number" id="product-price-mayorista" min="0" step="0.01" required placeholder="0">
+          </div>
+          <div class="form-group form-group-full">
+            <label for="product-image-file">Imagen del producto</label>
+            <input type="file" id="product-image-file" accept="image/*">
+            <small class="form-help">Opcional. Idealmente cuadrada y liviana.</small>
+          </div>
+          <div class="form-group form-group-full image-preview-group">
+            <label>Vista previa</label>
+            <div class="image-preview">
+              <span id="image-preview-placeholder">Sin imagen</span>
+              <img id="image-preview" alt="Vista previa" style="display:none;">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="modal-cancel" class="btn btn-light">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="modal-submit-btn">Guardar producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="admin-dashboard" class="admin-dashboard admin-hidden">
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <div class="admin-logo-wrap">
+          <img src="imagenes/logonuevo.png" alt="Migas &amp; Sabores" class="admin-logo">
+        </div>
+        <div class="admin-brand-text">
+          <span class="admin-brand-name">Migas &amp; Sabores</span>
+          <span class="admin-brand-tagline">Panel de catálogo</span>
+        </div>
+      </div>
+      <div class="admin-header-actions">
+        <span id="admin-status" class="admin-status" aria-live="polite"></span>
+        <a href="index.html" class="btn btn-light" target="_blank" rel="noopener">Ver sitio</a>
+        <button type="button" id="admin-logout-btn" class="btn btn-outline">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-toolbar">
+        <div class="admin-toolbar-left">
+          <h2>Productos</h2>
+          <p>Gestioná el catálogo que ven tus clientes en mayorista y minorista.</p>
+        </div>
+        <div class="admin-toolbar-right">
+          <button type="button" id="add-product-btn" class="btn btn-primary">+ Agregar nuevo producto</button>
+        </div>
+      </section>
+
+      <section class="admin-table-section">
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th class="admin-col-img">Imagen</th>
+                <th class="admin-col-name">Nombre</th>
+                <th class="admin-col-desc">Descripción</th>
+                <th class="admin-col-price">P. minorista</th>
+                <th class="admin-col-price">P. mayorista</th>
+                <th class="admin-col-actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody"></tbody>
+          </table>
+        </div>
+        <p id="admin-hint-offline" class="admin-hint admin-hint--offline" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

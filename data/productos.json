@@ -1,0 +1,45 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Sánguche Jamón y Queso",
+      "descripcion": "Pan francés con jamón cocido y queso bien fundido.",
+      "precio_minorista": 2500,
+      "precio_mayorista": 2100,
+      "imagen": "images/productos/jamonqueso.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Sánguche de Salame",
+      "descripcion": "Clásico de salame sobre pan francés crocante.",
+      "precio_minorista": 2600,
+      "precio_mayorista": 2150,
+      "imagen": "images/productos/salame.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Sánguche de Crudo y Queso",
+      "descripcion": "Jamón crudo, queso y toque de oliva en pan francés.",
+      "precio_minorista": 3200,
+      "precio_mayorista": 2700,
+      "imagen": "images/productos/crudoqueso.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Sánguche Especial Migas & Sabores",
+      "descripcion": "Jamón, queso, tomate, lechuga y aderezo especial.",
+      "precio_minorista": 2900,
+      "precio_mayorista": 2450,
+      "imagen": "images/productos/especial.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "Sánguche de Pollo",
+      "descripcion": "Pollo desmenuzado, mayonesa casera y verdeo.",
+      "precio_minorista": 2800,
+      "precio_mayorista": 2350,
+      "imagen": "images/productos/pollo.jpg"
+    }
+  ]
+}
+

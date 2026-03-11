@@ -1,0 +1,23 @@
+{
+  "name": "migas-ysabores",
+  "version": "1.0.0",
+  "description": "Migas & Sabores - Catálogo y pedidos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "clean": "rm -rf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "restart": "npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.0"
+  }
+}
