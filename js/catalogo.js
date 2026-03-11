@@ -119,28 +119,54 @@ const Catalogo = (() => {
       qtyInput.className = "quantity-input";
       qtyInput.value = "1";
       qtyInput.min = "1";
+      if (tipoPagina === "mayorista") {
+        qtyInput.step = "0.5";
+      }
 
       const plusBtn = document.createElement("button");
       plusBtn.type = "button";
       plusBtn.className = "quantity-btn";
       plusBtn.textContent = "+";
 
-      minusBtn.addEventListener("click", () => {
-        const actual = parseInt(qtyInput.value || "1", 10);
-        if (actual > 1) qtyInput.value = String(actual - 1);
-      });
-
-      plusBtn.addEventListener("click", () => {
-        const actual = parseInt(qtyInput.value || "1", 10);
-        qtyInput.value = String(actual + 1);
-      });
-
-      qtyInput.addEventListener("input", () => {
-        const n = parseInt(qtyInput.value || "1", 10);
-        if (Number.isNaN(n) || n < 1) {
-          qtyInput.value = "1";
-        }
-      });
+      if (tipoPagina === "mayorista") {
+        minusBtn.addEventListener("click", () => {
+          const actual = parseFloat(qtyInput.value || "1", 10);
+          if (actual > 1) {
+            const siguiente = Math.max(1, actual - 0.5);
+            qtyInput.value = siguiente === Math.floor(siguiente) ? String(Math.floor(siguiente)) : String(siguiente);
+          }
+        });
+        plusBtn.addEventListener("click", () => {
+          const actual = parseFloat(qtyInput.value || "1", 10);
+          const siguiente = actual + 0.5;
+          qtyInput.value = siguiente === Math.floor(siguiente) ? String(Math.floor(siguiente)) : String(siguiente);
+        });
+        qtyInput.addEventListener("input", () => {
+          const n = parseFloat(qtyInput.value || "1", 10);
+          if (Number.isNaN(n) || n < 1) {
+            qtyInput.value = "1";
+          } else {
+            const redondeado = Math.round(n * 2) / 2;
+            const clamped = Math.max(1, redondeado);
+            qtyInput.value = clamped === Math.floor(clamped) ? String(Math.floor(clamped)) : String(clamped);
+          }
+        });
+      } else {
+        minusBtn.addEventListener("click", () => {
+          const actual = parseInt(qtyInput.value || "1", 10);
+          if (actual > 1) qtyInput.value = String(actual - 1);
+        });
+        plusBtn.addEventListener("click", () => {
+          const actual = parseInt(qtyInput.value || "1", 10);
+          qtyInput.value = String(actual + 1);
+        });
+        qtyInput.addEventListener("input", () => {
+          const n = parseInt(qtyInput.value || "1", 10);
+          if (Number.isNaN(n) || n < 1) {
+            qtyInput.value = "1";
+          }
+        });
+      }
 
       quantity.appendChild(minusBtn);
       quantity.appendChild(qtyInput);
@@ -153,11 +179,17 @@ const Catalogo = (() => {
         tipoPagina === "mayorista" ? "Agregar (docenas mín. 1)" : "Agregar al pedido";
 
       addBtn.addEventListener("click", () => {
-        const baseCantidad = parseInt(qtyInput.value || "1", 10);
         if (!window.Carrito) return;
-        const cantidadValida = Number.isNaN(baseCantidad) || baseCantidad < 1 ? 1 : baseCantidad;
-        const cantidadFinal =
-          tipoPagina === "mayorista" ? cantidadValida * 12 : cantidadValida;
+        let cantidadFinal;
+        if (tipoPagina === "mayorista") {
+          const docenas = parseFloat(qtyInput.value || "1", 10);
+          const docenasValidas = Number.isNaN(docenas) || docenas < 1 ? 1 : docenas;
+          cantidadFinal = Math.round(docenasValidas * 12);
+        } else {
+          const baseCantidad = parseInt(qtyInput.value || "1", 10);
+          const cantidadValida = Number.isNaN(baseCantidad) || baseCantidad < 1 ? 1 : baseCantidad;
+          cantidadFinal = cantidadValida;
+        }
 
         window.Carrito.agregarItem({
           id: producto.id,

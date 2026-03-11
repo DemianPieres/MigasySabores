@@ -142,8 +142,9 @@ const Carrito = (() => {
       const qty = document.createElement("span");
       qty.className = "cart-item-qty";
       if (item.tipoPrecio === "mayorista") {
-        const docenas = item.cantidad / 12;
-        qty.textContent = `${docenas} doc. (${item.cantidad} u.)`;
+        const docenas = Math.round((item.cantidad / 12) * 2) / 2;
+        const docenasStr = docenas % 1 === 0 ? String(docenas) : String(docenas);
+        qty.textContent = `${docenasStr} doc. (${item.cantidad} u.)`;
       } else {
         qty.textContent = `${item.cantidad} u.`;
       }
@@ -188,9 +189,10 @@ const Carrito = (() => {
 
     items.forEach((item) => {
       if (item.tipoPrecio === "mayorista") {
-        const docenas = item.cantidad / 12;
+        const docenas = Math.round((item.cantidad / 12) * 2) / 2;
+        const docenasStr = docenas % 1 === 0 ? String(docenas) : String(docenas);
         lineas.push(
-          `${docenas} doc. (${item.cantidad} u.) de ${item.nombre} (Mayorista, mínimo 1 docena)`
+          `${docenasStr} doc. (${item.cantidad} u.) de ${item.nombre} (Mayorista, mínimo 1 docena)`
         );
       } else {
         lineas.push(`${item.cantidad}x ${item.nombre} (Minorista)`);
