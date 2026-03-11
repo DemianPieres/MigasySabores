@@ -200,7 +200,7 @@ async function start() {
     process.exit(1);
   }
   app.listen(PORT, () => {
-    console.log(`Servidor en http://localhost:${PORT}`);
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
   });
 }
 

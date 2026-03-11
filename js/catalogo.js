@@ -1,11 +1,9 @@
 /**
  * Catálogo: los productos se obtienen ÚNICAMENTE de la API (base de datos).
- * Si la página se abre desde otro puerto (ej. Live Server 5500), se usa localhost:3000 para la API.
+ * Se usa siempre el mismo origen donde está sirviendo el backend (Render, localhost, etc.).
  */
 
-var BACKEND_PORT_CAT = 3000;
-var portCat = parseInt(window.location.port, 10) || (window.location.protocol === "https:" ? 443 : 80);
-var API_PRODUCTOS = (portCat !== BACKEND_PORT_CAT) ? "http://localhost:" + BACKEND_PORT_CAT + "/api/productos" : (window.location.origin + "/api/productos");
+var API_PRODUCTOS = window.location.origin + "/api/productos";
 
 const Catalogo = (() => {
   let cacheProductos = null;

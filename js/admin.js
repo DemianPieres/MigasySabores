@@ -6,10 +6,8 @@
 (function () {
   "use strict";
 
-  // La API (Node) corre en el puerto 3000. Si abrís el admin con Live Server (5500) u otro, se usa igual el 3000.
-  var BACKEND_PORT = 3000;
-  var port = parseInt(window.location.port, 10) || (window.location.protocol === "https:" ? 443 : 80);
-  var API_BASE = (port !== BACKEND_PORT) ? "http://localhost:" + BACKEND_PORT : window.location.origin;
+  // La API corre en el mismo origen donde se sirve el frontend (localhost o Render).
+  var API_BASE = window.location.origin;
   var API_PRODUCTOS = API_BASE + "/api/productos";
   var API_ADMIN_LOGIN = API_BASE + "/api/admin/login";
   var ADMIN_AUTH_KEY = "migas_admin_authed";
@@ -241,7 +239,7 @@
       tbody.appendChild(tr);
     }
     if (hintOffline) {
-      hintOffline.textContent = "Abrí siempre desde http://localhost:3000/admin.html con el servidor en marcha (npm start). Los productos se guardan en la base de datos y se ven en tiempo real en mayorista y minorista.";
+      hintOffline.textContent = "Abrí siempre el panel desde la URL del servidor (por ejemplo, la URL de Render) con el servidor en marcha. Los productos se guardan en la base de datos y se ven en tiempo real en mayorista y minorista.";
       hintOffline.style.display = "block";
     }
   }
