@@ -470,7 +470,96 @@ body.admin-body {
 
 @media (min-width: 640px) {
   .form-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Ajustes responsive para móvil (no afectan escritorio) */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .admin-header-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .admin-main {
+    padding: 0.9rem 0.8rem 1.1rem;
+  }
+
+  .admin-table-section {
+    padding: 0.8rem;
+    border-radius: 14px;
+  }
+
+  .admin-table-wrapper {
+    margin: 0 -0.4rem;
+    padding: 0 0.4rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.45rem 0.4rem;
+  }
+
+  .admin-actions {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .btn-small {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-toolbar-right {
+    width: 100%;
+  }
+
+  .admin-toolbar-right .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header {
+    padding: 0.65rem 0.9rem;
+  }
+
+  .admin-header-left {
+    gap: 0.5rem;
+  }
+
+  .admin-brand-name {
+    font-size: 0.9rem;
+  }
+
+  .admin-brand-tagline {
+    font-size: 0.72rem;
+  }
+
+  .btn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .admin-table {
+    font-size: 0.8rem;
+  }
+
+  .admin-col-actions {
+    width: 120px;
   }
 }
 
