@@ -1,0 +1,51 @@
+# ─── DEPENDENCIAS ────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── VARIABLES DE ENTORNO Y SECRETOS ─────────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+*.env
+
+# ─── ARCHIVOS DEL SISTEMA OPERATIVO ──────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+
+# ─── LOGS ────────────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log
+
+# ─── ARCHIVOS TEMPORALES Y DE CACHÉ ──────────────────────────────────────────
+.cache/
+.temp/
+tmp/
+*.tmp
+
+# ─── DOCUMENTOS INTERNOS QUE NO DEBEN SER PÚBLICOS ───────────────────────────
+CONEXION_MONGO.md
+NOTAS_INTERNAS*.md
+TODO_PRIVADO*.md
+*.credentials
+*.secret
+
+# ─── EDITORES DE CÓDIGO ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── BACKUPS ─────────────────────────────────────────────────────────────────
+*.bak
+*.backup
+*.old

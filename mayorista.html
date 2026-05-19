@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migas &amp; Sabores – Precios Mayoristas</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka:wght@400;500;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="catalog-page catalog-mayorista">
+  <!-- Pantalla de carga (igual que index) -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-character-wrap">
+        <img src="imagenes/personaje.png" alt="Migas &amp; Sabores" class="loader-character">
+      </div>
+      <p class="loader-text">Preparando los mejores sánguches</p>
+      <div class="loader-dots">
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+        <span class="loader-dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainContent" class="page-wrapper hidden-before-load">
+    <header class="main-header">
+      <div class="container header-content">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img src="imagenes/logonuevo.png" alt="Migas &amp; Sabores" class="brand-logo">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Migas &amp; Sabores</span>
+            <span class="brand-tagline">Precios mayoristas</span>
+          </div>
+        </div>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="catalog-main">
+      <section class="catalog-hero" data-aos="fade-up">
+        <div class="container catalog-hero-grid">
+          <div class="catalog-hero-text">
+            <h1 class="hero-title">
+              Catálogo Mayorista
+              <span>Ideado para revendedores, eventos y empresas</span>
+            </h1>
+            <p class="hero-subtitle">
+              Aprovechá precios especiales por cantidad y armá tu pedido directo desde tu celular.
+            </p>
+            <ul class="catalog-benefits">
+              <li>Precios por volumen</li>
+              <li>Ideal para kioscos, bares y eventos</li>
+              <li>Pedido simple por WhatsApp</li>
+            </ul>
+          </div>
+          <div class="catalog-hero-visual">
+            <img src="imagenes/personaje.png" alt="Personaje Migas &amp; Sabores" class="hero-character floating-character">
+            <div class="hero-badge">
+              <span>Mayorista</span>
+              <strong>Más cantidad, mejor precio</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-section">
+        <div class="container">
+          <div class="catalog-toolbar" data-aos="fade-up">
+            <div class="catalog-search">
+              <label for="search-input">Buscá tu sánguche</label>
+              <input type="search" id="search-input" placeholder="Jamón y queso, salame, especial..." autocomplete="off">
+            </div>
+          </div>
+
+          <div id="product-list" class="product-grid" data-tipo="mayorista"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="cart-floating-bar" class="cart-floating-bar is-hidden">
+    <button id="cart-floating-button" type="button" class="cart-floating-inner">
+      <span id="cart-floating-count" class="cart-floating-count">0 productos</span>
+      <span class="cart-floating-separator">•</span>
+      <span id="cart-floating-total" class="cart-floating-total">$0</span>
+      <span class="cart-floating-cta">Ver mi carrito</span>
+    </button>
+  </div>
+
+  <script src="https://unpkg.com/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/carrito.js" defer></script>
+  <script src="js/catalogo.js" defer></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
+
