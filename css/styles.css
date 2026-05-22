@@ -1551,9 +1551,9 @@ body.home-page {
     repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.02) 0 1px, transparent 1px 72px),
     url("../images/Background.jpeg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+  background-position: center center;
+  background-size: contain;
+  background-attachment: scroll;
   animation: home-bg-wave 30s ease-in-out infinite alternate;
 }
 
@@ -1580,6 +1580,14 @@ body.home-page {
   body.home-page {
     background-attachment: scroll;
     min-height: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  body.home-page {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
   }
 }
 
