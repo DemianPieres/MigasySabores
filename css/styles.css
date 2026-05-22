@@ -61,7 +61,7 @@ body {
   position: relative;
 }
 
-/* Capa del fondo: fondo negro con líneas doradas, halos y textura suave */
+/* Capa del fondo: fondo con la imagen de referencia y overlay dorado */
 body::before {
   content: "";
   position: fixed;
@@ -71,15 +71,13 @@ body::before {
   height: 100%;
   height: 100dvh;
   background:
-    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.03) 0 1px, transparent 1px 72px),
-    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.16), transparent 18%),
-    radial-gradient(circle at 82% 10%, rgba(212, 175, 55, 0.12), transparent 16%),
-    radial-gradient(circle at 52% 40%, rgba(212, 175, 55, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(8, 6, 9, 0.98) 0%, rgba(5, 4, 6, 1) 40%, rgba(8, 7, 11, 1) 100%);
+    linear-gradient(180deg, rgba(8, 6, 9, 0.42), rgba(8, 6, 9, 0.62)),
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.02) 0 1px, transparent 1px 72px),
+    url("../images/Background.jpeg");
   background-repeat: no-repeat;
-  background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%, center;
-  background-size: 200% 200%, cover, cover, cover, cover;
-  filter: contrast(112%) brightness(0.95);
+  background-position: center;
+  background-size: cover;
+  filter: contrast(108%) brightness(0.94);
   animation: loader-bg-drift 30s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
@@ -95,9 +93,9 @@ body::after {
   height: 100%;
   height: 100dvh;
   background:
-    radial-gradient(circle at 14% 10%, rgba(212, 175, 55, 0.12), transparent 18%),
-    radial-gradient(circle at 78% 18%, rgba(212, 175, 55, 0.1), transparent 16%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.74));
+    radial-gradient(circle at 14% 10%, rgba(212, 175, 55, 0.06), transparent 18%),
+    radial-gradient(circle at 78% 18%, rgba(212, 175, 55, 0.05), transparent 16%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.48));
   pointer-events: none;
   z-index: 0;
 }
@@ -165,14 +163,13 @@ button {
   height: 100%;
   height: 100dvh;
   background:
-    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.04) 0 1px, transparent 1px 80px),
-    radial-gradient(circle at 18% 20%, rgba(212, 175, 55, 0.20), transparent 16%),
-    radial-gradient(circle at 82% 16%, rgba(212, 175, 55, 0.12), transparent 14%),
-    linear-gradient(180deg, rgba(8, 6, 9, 0.96) 0%, rgba(5, 4, 6, 1) 100%);
+    linear-gradient(180deg, rgba(8, 6, 9, 0.58), rgba(8, 6, 9, 0.78)),
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.02) 0 1px, transparent 1px 80px),
+    url("../images/Background.jpeg");
   background-repeat: no-repeat;
-  background-position: 50% 50%, 50% 50%, 50% 50%, center;
-  background-size: 180% 180%, cover, cover, cover;
-  filter: contrast(110%) brightness(0.92);
+  background-position: center;
+  background-size: cover;
+  filter: contrast(105%) brightness(0.88);
   animation: loader-bg-drift 30s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
@@ -1550,13 +1547,12 @@ h1,
    con una capa oscura por encima para mejorar la lectura del texto. */
 body.home-page {
   background:
-    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.03) 0 1px, transparent 1px 72px),
-    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.16), transparent 18%),
-    radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.1), transparent 16%),
-    linear-gradient(180deg, rgba(8, 6, 9, 0.95), rgba(5, 4, 6, 0.98));
+    linear-gradient(180deg, rgba(8, 6, 9, 0.42), rgba(8, 6, 9, 0.62)),
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.02) 0 1px, transparent 1px 72px),
+    url("../images/Background.jpeg");
   background-repeat: no-repeat;
-  background-position: 50% 50%, center, center, center;
-  background-size: 200% 200%, cover, cover, cover;
+  background-position: center;
+  background-size: cover;
   background-attachment: fixed;
   animation: home-bg-wave 30s ease-in-out infinite alternate;
 }
