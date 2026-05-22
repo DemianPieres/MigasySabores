@@ -1,13 +1,13 @@
 :root {
-  /* Paleta alineada con la web principal */
-  --admin-bg: #0d5c56;
-  --admin-card-bg: #f2e8cf;
-  --admin-border: rgba(242, 232, 207, 0.65);
-  --admin-text: #1a2523;
-  --admin-muted: #32504a;
-  --admin-primary: #e86a1a;
-  --admin-primary-soft: rgba(232, 106, 26, 0.16);
-  --admin-danger: #e53935;
+  /* Paleta negra y dorada para el panel administrativo */
+  --admin-bg: #070507;
+  --admin-card-bg: #11110f;
+  --admin-border: rgba(212, 175, 55, 0.22);
+  --admin-text: #f7edd2;
+  --admin-muted: #d8c98d;
+  --admin-primary: #d4af37;
+  --admin-primary-soft: rgba(212, 175, 55, 0.16);
+  --admin-danger: #c34b20;
 }
 
 *,
@@ -44,7 +44,7 @@ body.admin-body {
 }
 
 .btn-primary:hover {
-  background: #d95a0f;
+  background: #b78d2c;
 }
 
 .btn-light {
@@ -89,7 +89,7 @@ body.admin-body {
   background: var(--admin-card-bg);
   border-radius: 18px;
   padding: 1.8rem 1.6rem 1.5rem;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
 }
 
 .admin-title {
@@ -163,9 +163,9 @@ body.admin-body {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1.5rem;
-  background: rgba(13, 92, 86, 0.9);
-  border-bottom: 1px solid rgba(242, 232, 207, 0.35);
-  color: #fffef9;
+  background: rgba(5, 4, 6, 0.92);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--admin-text);
 }
 
 .admin-header-left {
@@ -230,7 +230,7 @@ body.admin-body {
 
 .admin-main {
   padding: 1.1rem 1.5rem 1.5rem;
-  background: linear-gradient(180deg, #0d5c56 0%, #0a4944 50%, #073733 100%);
+  background: linear-gradient(180deg, rgba(7, 5, 7, 0.98) 0%, rgba(10, 8, 10, 0.98) 50%, rgba(14, 11, 13, 0.96) 100%);
 }
 
 .admin-toolbar {
@@ -253,11 +253,11 @@ body.admin-body {
 }
 
 .admin-table-section {
-  background: rgba(13, 92, 86, 0.92);
+  background: rgba(17, 17, 15, 0.92);
   border-radius: 18px;
   padding: 1.1rem 1.2rem;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(242, 232, 207, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .admin-table-wrapper {
@@ -274,7 +274,7 @@ body.admin-body {
 }
 
 .admin-table thead {
-  background: rgba(242, 232, 207, 0.14);
+  background: rgba(212, 175, 55, 0.08);
 }
 
 .admin-table th,
@@ -325,7 +325,7 @@ body.admin-body {
 }
 
 .admin-table tbody tr:hover {
-  background: rgba(242, 232, 207, 0.06);
+  background: rgba(212, 175, 55, 0.06);
 }
 
 .admin-empty-cell {
@@ -345,7 +345,7 @@ body.admin-body {
   min-height: 40px;
   border-radius: 10px;
   object-fit: cover;
-  background: rgba(242, 232, 207, 0.25);
+  background: rgba(212, 175, 55, 0.12);
   display: block;
 }
 
@@ -387,7 +387,7 @@ body.admin-body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.55);
+  background: rgba(0, 0, 0, 0.72);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -402,9 +402,9 @@ body.admin-body {
 .modal {
   width: 100%;
   max-width: 720px;
-  background: #ffffff;
+  background: #11110f;
   border-radius: 18px;
-  box-shadow: 0 18px 54px rgba(15, 23, 42, 0.6);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.45);
 }
 
 .modal-header {
@@ -448,7 +448,7 @@ body.admin-body {
   align-items: center;
   justify-content: center;
   min-height: 80px;
-  background: #fafbff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .image-preview img {

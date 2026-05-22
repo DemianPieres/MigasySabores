@@ -1,29 +1,23 @@
 :root {
-  /* Paleta acorde al fondo: verde #0d5c56, naranja #e86a1a, crema #f2e8cf */
-  --color-verde-fondo: #0d5c56;
-  --color-naranja: #e86a1a;
-  --color-naranja-claro: #ed7d2e;
-  --color-crema: #f2e8cf;
-  --color-crema-oscuro: #e6dcc4;
-  --color-teal: #0d5c56;
-  --color-teal-oscuro: #0a4944;
-  --color-verde-oscuro: #0d5c56;
-  --color-verde: #0d5c56;
-  --color-blanco: #fffef9;
-  /* Colores de texto con buen contraste sobre cualquier zona del fondo (sin opacarse) */
-  --color-texto-claro: #fffef9;
-  --color-texto-sobre-verde: #fffef9;
-  --color-texto-secundario: #f8f2e6;
-  --color-texto-oscuro: #1a2523;
-  --color-borde-card: rgba(255, 254, 249, 0.4);
-  --color-titulo: #fffef9;
-  --color-titulo-acento: #e86a1a;
+  /* Paleta negra y dorada */
+  --color-fondo: #050406;
+  --color-fondo-oscuro: #060506;
+  --color-dorado: #d4af37;
+  --color-dorado-claro: #f0d36b;
+  --color-dorado-suave: #b8913b;
+  --color-blanco: #faf2db;
+  --color-texto-claro: #faf2db;
+  --color-texto-sobre-fondo: #faf2db;
+  --color-texto-secundario: #d8c98d;
+  --color-texto-oscuro: #1c160f;
+  --color-borde-card: rgba(212, 175, 55, 0.18);
+  --color-titulo: #faf2db;
+  --color-titulo-acento: #d4af37;
   --sombra-texto: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.2);
-  --sombra-titulo: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 2px rgba(13, 92, 86, 0.4);
-  /* Sombra más marcada para descripciones y texto pequeño: mejor legibilidad */
-  --sombra-descripcion: 0 1px 3px rgba(0, 0, 0, 0.45), 0 0 2px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(13, 92, 86, 0.2);
-  --shadow-suave: 0 8px 24px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.18);
-  --shadow-suave-hover: 0 12px 32px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --sombra-titulo: 0 2px 6px rgba(0, 0, 0, 0.35), 0 0 3px rgba(212, 175, 55, 0.4);
+  --sombra-descripcion: 0 1px 3px rgba(0, 0, 0, 0.45), 0 0 2px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(212, 175, 55, 0.18);
+  --shadow-suave: 0 8px 24px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-suave-hover: 0 12px 32px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.22);
   --radius-card: 16px;
   --transition-base: 0.25s ease;
 
@@ -63,11 +57,11 @@ body {
   overflow-x: hidden;
   font-family: var(--font-sans);
   color: var(--color-texto-claro);
-  background-color: #0d5c56;
+  background-color: var(--color-fondo);
   position: relative;
 }
 
-/* Capa del fondo: SVG con formas (naranja, crema, verde) + filtro vintage */
+/* Capa del fondo: fondo negro con líneas doradas, halos y textura suave */
 body::before {
   content: "";
   position: fixed;
@@ -76,12 +70,17 @@ body::before {
   width: 100%;
   height: 100%;
   height: 100dvh;
-  background-image: url("../images/fondo-vintage.svg");
+  background:
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.03) 0 1px, transparent 1px 72px),
+    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.16), transparent 18%),
+    radial-gradient(circle at 82% 10%, rgba(212, 175, 55, 0.12), transparent 16%),
+    radial-gradient(circle at 52% 40%, rgba(212, 175, 55, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(8, 6, 9, 0.98) 0%, rgba(5, 4, 6, 1) 40%, rgba(8, 7, 11, 1) 100%);
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  filter: contrast(110%) brightness(95%);
-  animation: loader-bg-drift 25s ease-in-out infinite;
+  background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%, center;
+  background-size: 200% 200%, cover, cover, cover, cover;
+  filter: contrast(112%) brightness(0.95);
+  animation: loader-bg-drift 30s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
 }
@@ -95,7 +94,10 @@ body::after {
   width: 100%;
   height: 100%;
   height: 100dvh;
-  background: rgba(13, 92, 86, 0.22);
+  background:
+    radial-gradient(circle at 14% 10%, rgba(212, 175, 55, 0.12), transparent 18%),
+    radial-gradient(circle at 78% 18%, rgba(212, 175, 55, 0.1), transparent 16%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.74));
   pointer-events: none;
   z-index: 0;
 }
@@ -141,7 +143,7 @@ button {
   visibility: visible;
 }
 
-/* Loader – mismo fondo que el index (verde + SVG vintage) con animación estética */
+/* Loader – nuevo fondo dorado/negro con animación estética */
 
 .loader {
   position: fixed;
@@ -151,10 +153,9 @@ button {
   justify-content: center;
   z-index: 9999;
   overflow: hidden;
-  background-color: #0d5c56;
+  background-color: var(--color-fondo);
 }
 
-/* Mismo SVG de fondo que el index, con animación suave */
 .loader::before {
   content: "";
   position: absolute;
@@ -163,17 +164,20 @@ button {
   width: 100%;
   height: 100%;
   height: 100dvh;
-  background-image: url("../images/fondo-vintage.svg");
+  background:
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.04) 0 1px, transparent 1px 80px),
+    radial-gradient(circle at 18% 20%, rgba(212, 175, 55, 0.20), transparent 16%),
+    radial-gradient(circle at 82% 16%, rgba(212, 175, 55, 0.12), transparent 14%),
+    linear-gradient(180deg, rgba(8, 6, 9, 0.96) 0%, rgba(5, 4, 6, 1) 100%);
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  filter: contrast(110%) brightness(95%);
-  animation: loader-bg-drift 25s ease-in-out infinite;
+  background-position: 50% 50%, 50% 50%, 50% 50%, center;
+  background-size: 180% 180%, cover, cover, cover;
+  filter: contrast(110%) brightness(0.92);
+  animation: loader-bg-drift 30s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Capa de opacidad igual que en el index (solo en loader) */
 .loader::after {
   content: "";
   position: absolute;
@@ -182,12 +186,13 @@ button {
   width: 100%;
   height: 100%;
   height: 100dvh;
-  background: rgba(13, 92, 86, 0.22);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.10), transparent 18%),
+    radial-gradient(circle at 80% 12%, rgba(212, 175, 55, 0.08), transparent 16%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Animación estética: deriva suave del fondo (sin transforms para evitar parpadeos en mobile) */
 @keyframes loader-bg-drift {
   0%, 100% {
     background-position: 50% 50%;
@@ -203,7 +208,6 @@ button {
   }
 }
 
-/* Contenedor del loader: tarjeta retro suave para que destaque el personaje */
 .loader-inner {
   display: flex;
   flex-direction: column;
@@ -216,20 +220,20 @@ button {
   max-width: min(90vw, 360px);
   min-height: 220px;
   border-radius: 32px;
-  background: rgba(253, 250, 241, 0.92);
+  background: rgba(10, 8, 10, 0.96);
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 3px rgba(243, 98, 26, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 20px 50px rgba(0, 0, 0, 0.32),
+    0 0 0 3px rgba(212, 175, 55, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 1;
-  border: 2px solid rgba(243, 98, 26, 0.25);
+  border: 2px solid rgba(212, 175, 55, 0.18);
 }
 
 /* Envuelve al personaje para la animación y sombra */
 .loader-character-wrap {
   margin: 0 auto;
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.2)) drop-shadow(0 4px 8px rgba(13, 92, 86, 0.15));
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.2)) drop-shadow(0 4px 8px rgba(212, 175, 55, 0.15));
 }
 
 /* Personaje: tamaño generoso y animación suave de “flotar” */
@@ -249,14 +253,14 @@ button {
   }
 }
 
-/* Texto de carga: estilo retro y legible */
+/* Texto de carga: estilo retro y elegante */
 .loader-text {
   margin: 0 0 1rem;
   font-family: var(--font-script);
   font-size: 1.35rem;
-  color: #1a4d47;
+  color: var(--color-blanco);
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 /* Puntos de carga animados */
@@ -271,9 +275,9 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #f3621a;
+  background: var(--color-dorado);
   animation: loader-dot-bounce 0.7s ease-in-out infinite alternate;
-  box-shadow: 0 2px 6px rgba(243, 98, 26, 0.4);
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.35);
 }
 
 .loader-dot:nth-child(2) {
@@ -301,9 +305,9 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(13, 92, 86, 0.88);
+  background: rgba(5, 4, 6, 0.86);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(242, 232, 207, 0.35);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.20);
 }
 
 .header-content {
@@ -327,9 +331,9 @@ button {
   height: 56px;
   border-radius: 999px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #110f10;
   flex-shrink: 0;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.22);
 }
 
 .brand-logo-wrap .brand-logo {
@@ -391,7 +395,7 @@ button {
   bottom: 0;
   height: 2px;
   border-radius: 999px;
-  background: var(--color-naranja);
+  background: var(--color-dorado);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform var(--transition-base);
@@ -428,30 +432,28 @@ button {
 
 .btn-primary,
 .btn-secondary {
-  background: linear-gradient(135deg, #e86a1a, #d95a0f);
-  color: #fffef9;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.98), rgba(177, 138, 45, 0.95));
+  color: #11110f;
   box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(255, 254, 249, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .btn-secondary {
   border-width: 2px;
 }
 
-/* Botón WhatsApp (verde) */
 .btn-whatsapp {
-  background: #25d366;
-  color: #fffef9;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.98), rgba(181, 148, 58, 0.9));
+  color: #11110f;
   box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(255, 254, 249, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
-/* Botón Instagram (degradado clásico) */
 .btn-instagram {
-  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
-  color: #fffef9;
+  background: linear-gradient(135deg, rgba(181, 148, 58, 0.95), rgba(212, 175, 55, 0.85));
+  color: #11110f;
   box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(255, 254, 249, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 /* Iconos dentro de los botones de contacto */
@@ -569,9 +571,9 @@ button {
   text-shadow: var(--sombra-titulo);
 }
 
-/* En la home el subtítulo del título principal va en verde oscuro */
+/* En la home el subtítulo del título principal va en dorado */
 .home-page .hero-title span {
-  color: var(--color-naranja);
+  color: var(--color-titulo-acento);
 }
 
 .hero-subtitle {
@@ -611,12 +613,12 @@ button {
   position: absolute;
   inset: 12%;
   border-radius: 32px;
-  background-color: rgba(13, 92, 86, 0.75);
+  background-color: rgba(8, 6, 9, 0.82);
   background-image:
-    linear-gradient(45deg, rgba(242, 232, 207, 0.12) 25%, transparent 25%, transparent 50%, rgba(242, 232, 207, 0.12) 50%, rgba(242, 232, 207, 0.12) 75%, transparent 75%, transparent);
+    linear-gradient(45deg, rgba(212, 175, 55, 0.12) 25%, transparent 25%, transparent 50%, rgba(212, 175, 55, 0.12) 50%, rgba(212, 175, 55, 0.12) 75%, transparent 75%, transparent);
   background-size: 30px 30px;
   box-shadow: var(--shadow-suave);
-  border: 1px solid var(--color-borde-card);
+  border: 1px solid rgba(212, 175, 55, 0.18);
 }
 
 /* Slogan THIS OR THAT: solo la imagen, flotando y con sombra para que no se opaque con el fondo */
@@ -626,7 +628,7 @@ button {
   height: auto;
   object-fit: contain;
   transform-origin: center center;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35)) drop-shadow(0 4px 12px rgba(13, 92, 86, 0.25));
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.18));
 }
 
 /* Animación flotante genérica */
@@ -673,12 +675,12 @@ button {
   position: absolute;
   left: 4%;
   top: 10%;
-  background: rgba(13, 92, 86, 0.85);
+  background: rgba(8, 6, 9, 0.88);
   padding: 0.6rem 0.9rem;
   border-radius: 999px;
   box-shadow: var(--shadow-suave);
   font-size: 0.75rem;
-  border: 1px solid var(--color-borde-card);
+  border: 1px solid rgba(212, 175, 55, 0.18);
 }
 
 .hero-badge span {
@@ -692,7 +694,7 @@ button {
 
 .hero-badge strong {
   font-size: 0.8rem;
-  color: var(--color-naranja);
+  color: var(--color-titulo-acento);
   text-shadow: var(--sombra-texto);
 }
 
@@ -765,12 +767,12 @@ h1,
 .step-card {
   position: relative;
   padding: var(--space-3) var(--space-2) var(--space-2) 3.25rem;
-  background: rgba(13, 92, 86, 0.9);
+  background: rgba(8, 6, 9, 0.9);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-suave);
   border: 2px solid var(--color-borde-card);
   font-size: clamp(0.85rem, 2vw, 0.9rem);
-  color: var(--color-texto-sobre-verde);
+  color: var(--color-texto-claro);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
@@ -786,7 +788,7 @@ h1,
   width: 1.9rem;
   height: 1.9rem;
   border-radius: 999px;
-  background: var(--color-naranja);
+  background: var(--color-titulo-acento);
   color: var(--color-texto-claro);
   display: flex;
   align-items: center;
@@ -858,11 +860,11 @@ h1,
 .about-card {
   position: relative;
   padding: 1.2rem 1.2rem 1.2rem 1.2rem;
-  background: rgba(13, 92, 86, 0.9);
+  background: rgba(8, 6, 9, 0.92);
   border-radius: 24px;
   box-shadow: var(--shadow-suave);
   border: 2px solid var(--color-borde-card);
-  color: var(--color-texto-sobre-verde);
+  color: var(--color-texto-claro);
 }
 
 .about-character {
@@ -883,9 +885,9 @@ h1,
   text-shadow: var(--sombra-descripcion);
 }
 
-.about-list li::before {
+..about-list li::before {
   content: "•";
-  color: var(--color-naranja);
+  color: var(--color-titulo-acento);
   margin-right: 0.4rem;
 }
 
@@ -915,7 +917,7 @@ h1,
 
 .main-footer {
   border-top: 1px solid var(--color-borde-card);
-  background: rgba(13, 92, 86, 0.88);
+  background: rgba(8, 6, 9, 0.92);
 }
 
 .footer-content {
@@ -969,7 +971,7 @@ h1,
 
 .catalog-benefits li::before {
   content: "✔";
-  color: var(--color-naranja);
+  color: var(--color-titulo-acento);
   margin-right: 0.3rem;
 }
 
@@ -1006,14 +1008,14 @@ h1,
   padding: var(--space-2) var(--space-3);
   border-radius: 999px;
   border: 1px solid var(--color-borde-card);
-  background: rgba(13, 92, 86, 0.6);
+  background: rgba(8, 6, 9, 0.6);
   color: var(--color-texto-claro);
   font-size: 1rem;
   -webkit-tap-highlight-color: transparent;
 }
 
 .catalog-search input::placeholder {
-  color: rgba(255, 254, 249, 0.7);
+  color: rgba(250, 242, 219, 0.7);
 }
 
 .catalog-search label {
@@ -1022,7 +1024,7 @@ h1,
 }
 
 .catalog-search input:focus-visible {
-  outline: 2px solid var(--color-naranja);
+  outline: 2px solid var(--color-titulo-acento);
   outline-offset: 1px;
 }
 
@@ -1036,7 +1038,7 @@ h1,
 .product-card {
   display: flex;
   flex-direction: column;
-  background: rgba(13, 92, 86, 0.9);
+  background: rgba(8, 6, 9, 0.88);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-suave);
   border: 2px solid var(--color-borde-card);
@@ -1084,7 +1086,7 @@ h1,
   padding: 0.25rem 0.6rem;
   font-size: 0.7rem;
   border-radius: 999px;
-  background: rgba(13, 92, 86, 0.95);
+  background: rgba(8, 6, 9, 0.95);
   color: var(--color-texto-claro);
   text-shadow: var(--sombra-texto);
 }
@@ -1113,7 +1115,7 @@ h1,
 .product-price {
   font-weight: 600;
   font-size: 0.98rem;
-  color: var(--color-naranja-claro);
+  color: var(--color-dorado-claro);
   text-shadow: var(--sombra-texto);
 }
 
@@ -1136,7 +1138,7 @@ h1,
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  background: rgba(13, 92, 86, 0.5);
+  background: rgba(8, 6, 9, 0.48);
   border: 1px solid var(--color-borde-card);
 }
 
@@ -1191,12 +1193,12 @@ h1,
 
 .cart-summary,
 .cart-form-wrapper {
-  background: rgba(13, 92, 86, 0.9);
+  background: rgba(8, 6, 9, 0.88);
   border-radius: 18px;
   box-shadow: var(--shadow-suave);
   padding: var(--space-3);
   border: 2px solid var(--color-borde-card);
-  color: var(--color-texto-sobre-verde);
+  color: var(--color-texto-claro);
 }
 
 .cart-min-note {
@@ -1230,8 +1232,8 @@ h1,
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: linear-gradient(135deg, #e86a1a, #d95a0f);
-  color: #fffef9;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.98), rgba(183, 142, 56, 0.95));
+  color: #11110f;
   box-shadow: var(--shadow-suave-hover);
   font-weight: 600;
   font-size: 0.9rem;
@@ -1339,7 +1341,7 @@ h1,
 }
 
 .cart-total-amount {
-  color: var(--color-naranja-claro);
+  color: var(--color-dorado-claro);
   text-shadow: var(--sombra-texto);
 }
 
@@ -1361,7 +1363,7 @@ h1,
   padding: var(--space-2) var(--space-3);
   border-radius: 999px;
   border: 1px solid var(--color-borde-card);
-  background: rgba(13, 92, 86, 0.6);
+  background: rgba(8, 6, 9, 0.6);
   color: var(--color-texto-claro);
   font-size: 1rem;
   font-family: inherit;
@@ -1387,7 +1389,7 @@ h1,
 
 .form-group input:focus-visible,
 .form-group textarea:focus-visible {
-  outline: 2px solid var(--color-naranja);
+  outline: 2px solid var(--color-titulo-acento);
   outline-offset: 1px;
 }
 
@@ -1401,8 +1403,8 @@ h1,
 
 .catalog-mayorista .hero-badge,
 .catalog-minorista .hero-badge {
-  background: rgba(13, 92, 86, 0.85);
-  border: 1px solid var(--color-borde-card);
+  background: rgba(8, 6, 9, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.18);
 }
 
 /* En móvil: separar globo y personaje en el hero del catálogo para que no se superpongan */
@@ -1548,13 +1550,15 @@ h1,
    con una capa oscura por encima para mejorar la lectura del texto. */
 body.home-page {
   background:
-    linear-gradient(rgba(7, 39, 36, 0.93), rgba(7, 39, 36, 0.93)),
-    url("../images/fondo-vintage.svg");
+    repeating-linear-gradient(145deg, rgba(212, 175, 55, 0.03) 0 1px, transparent 1px 72px),
+    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.16), transparent 18%),
+    radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.1), transparent 16%),
+    linear-gradient(180deg, rgba(8, 6, 9, 0.95), rgba(5, 4, 6, 0.98));
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-position: 50% 50%, center, center, center;
+  background-size: 200% 200%, cover, cover, cover;
   background-attachment: fixed;
-  animation: home-bg-wave 28s ease-in-out infinite alternate;
+  animation: home-bg-wave 30s ease-in-out infinite alternate;
 }
 
 @keyframes home-bg-wave {
