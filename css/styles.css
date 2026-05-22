@@ -1578,8 +1578,15 @@ body.home-page {
 /* En móvil: evitar bug de espacio en blanco al hacer scroll (fixed no se pinta bien en iOS/Android) */
 @media (max-width: 767px) {
   body.home-page {
+    background-size: auto 100%;
+    background-position: center top;
     background-attachment: scroll;
     min-height: 100%;
+  }
+
+  .steps-section .step-card,
+  .about-card {
+    background: rgba(8, 6, 9, 0.82);
   }
 }
 
