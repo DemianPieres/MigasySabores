@@ -35,7 +35,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "x-admin-token"]
 }));
 
-app.use(express.json({ limit: "2mb" }));
+// Aumentamos límite temporalmente para permitir DataURLs de imágenes pequeñas
+app.use(express.json({ limit: "5mb" }));
 app.use(express.static(path.join(__dirname)));
 
 // ─── RATE LIMITING GLOBAL ────────────────────────────────────────────────────
@@ -84,7 +85,9 @@ function limpiarSesionesExpiradas() {
 function requireAdminAuth(req, res, next) {
   limpiarSesionesExpiradas();
   const token = req.headers["x-admin-token"];
+  console.log("requireAdminAuth - tokenPresent:", !!token, "activeSessions:", activeSessions.size);
   if (!token || !activeSessions.has(token)) {
+    console.log("requireAdminAuth - denied. tokenPresent:", !!token, "hasToken:", activeSessions.has(token));
     return res.status(401).json({ error: "No autorizado. Iniciá sesión en el panel de administración." });
   }
   const session = activeSessions.get(token);
@@ -197,6 +200,7 @@ app.post("/api/admin/logout", (req, res) => {
 
 app.post("/api/productos", requireAdminAuth, writeLimiter, async (req, res) => {
   try {
+    console.log("POST /api/productos - x-admin-token present:", !!req.headers['x-admin-token'], "bodyKeys:", Object.keys(req.body || {}));
     let { nombre, descripcion, precio_minorista, precio_mayorista, imagen } = req.body;
 
     nombre = sanitizeString(nombre, 200);
@@ -244,6 +248,7 @@ app.post("/api/productos", requireAdminAuth, writeLimiter, async (req, res) => {
 app.put("/api/productos/:id", requireAdminAuth, writeLimiter, async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("PUT /api/productos/:id - x-admin-token present:", !!req.headers['x-admin-token'], "id:", id, "bodyKeys:", Object.keys(req.body || {}));
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ error: "ID inválido" });
     }
@@ -284,6 +289,7 @@ app.put("/api/productos/:id", requireAdminAuth, writeLimiter, async (req, res) =
 app.delete("/api/productos/:id", requireAdminAuth, writeLimiter, async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("DELETE /api/productos/:id - x-admin-token present:", !!req.headers['x-admin-token'], "id:", id);
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ error: "ID inválido" });
     }

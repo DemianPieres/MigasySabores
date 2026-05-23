@@ -109,13 +109,15 @@
   function apiGet() {
     return fetch(API_PRODUCTOS, { cache: "no-cache" })
       .then(function (res) {
-        if (!res.ok) return null;
-        return res.json();
+        return res.json().then(function (json) {
+          if (!res.ok) return Promise.reject(json);
+          return json;
+        });
       })
       .then(function (data) {
         return data && Array.isArray(data.productos) ? data.productos : null;
       })
-      .catch(function () { return null; });
+      .catch(function (err) { console.error('apiGet error', err); return null; });
   }
 
   function apiPost(body) {
@@ -127,8 +129,10 @@
       },
       body: JSON.stringify(body)
     }).then(function (res) {
-      if (!res.ok) return null;
-      return res.json();
+      return res.json().then(function (json) {
+        if (!res.ok) return Promise.reject(json);
+        return json;
+      });
     }).catch(function () { return null; });
   }
 
@@ -141,8 +145,10 @@
       },
       body: JSON.stringify(body)
     }).then(function (res) {
-      if (!res.ok) return null;
-      return res.json();
+      return res.json().then(function (json) {
+        if (!res.ok) return Promise.reject(json);
+        return json;
+      });
     }).catch(function () { return null; });
   }
 
@@ -152,8 +158,12 @@
       headers: {
         "x-admin-token": getToken()
       }
-    }).then(function (res) { return res.ok; })
-      .catch(function () { return false; });
+    }).then(function (res) {
+      return res.json().then(function (json) {
+        if (!res.ok) return Promise.reject(json);
+        return json;
+      });
+    }).then(function () { return true; }).catch(function (err) { console.error('apiDelete error', err); return Promise.reject(err); });
   }
 
   function renderTabla() {
@@ -210,9 +220,11 @@
         btnEliminar.textContent = "Eliminar";
         btnEliminar.addEventListener("click", function () {
           if (!confirm("¿Eliminar este producto?")) return;
-          apiDelete(p.id).then(function (ok) {
-            if (ok) cargarProductos(true);
-            else alert("No se pudo eliminar. Revisá que el servidor esté en marcha.");
+          apiDelete(p.id).then(function () {
+            cargarProductos(true);
+          }).catch(function (err) {
+            var msg = err && err.error ? err.error : "No se pudo eliminar. Revisá que el servidor esté en marcha.";
+            alert(msg);
           });
         });
         tdAcc.appendChild(btnEditar);
@@ -302,21 +314,19 @@
 
       if (productoEditando && productIdInput && productIdInput.value) {
         apiPut(productoEditando.id, body).then(function (updated) {
-          if (updated) {
-            hideModal();
-            cargarProductos(true);
-          } else {
-            alert("No se pudo actualizar. Revisá que el servidor esté en marcha.");
-          }
+          hideModal();
+          cargarProductos(true);
+        }).catch(function (err) {
+          var msg = err && err.error ? err.error : "No se pudo actualizar. Revisá que el servidor esté en marcha.";
+          alert(msg);
         });
       } else {
         apiPost(body).then(function (created) {
-          if (created) {
-            hideModal();
-            cargarProductos(true);
-          } else {
-            alert("No se pudo crear. Revisá que el servidor esté en marcha.");
-          }
+          hideModal();
+          cargarProductos(true);
+        }).catch(function (err) {
+          var msg = err && err.error ? err.error : "No se pudo crear. Revisá que el servidor esté en marcha.";
+          alert(msg);
         });
       }
     }
