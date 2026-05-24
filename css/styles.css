@@ -154,6 +154,16 @@ button {
   background-color: var(--color-fondo);
 }
 
+.loader-video {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 .loader::before {
   content: "";
   position: absolute;
@@ -202,6 +212,16 @@ button {
   }
   75% {
     background-position: 52% 47%;
+  }
+}
+
+@media (max-width: 767px) {
+  .loader-inner {
+    display: none !important;
+  }
+
+  .loader-video {
+    display: block;
   }
 }
 
@@ -324,8 +344,10 @@ button {
 
 /* Contenedor circular con fondo blanco: el nuevo logo se ve grande y claro */
 .brand-logo-wrap {
-  width: 56px;
-  height: 56px;
+  position: relative;
+  z-index: 30;
+  width: 60px;
+  height: 60px;
   border-radius: 999px;
   overflow: hidden;
   background-color: #110f10;
@@ -334,6 +356,7 @@ button {
 }
 
 .brand-logo-wrap .brand-logo {
+  position: relative;
   width: 115%;
   height: 115%;
   object-fit: contain;
@@ -432,25 +455,30 @@ button {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.98), rgba(177, 138, 45, 0.95));
   color: #11110f;
   box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 2px solid rgba(212, 175, 55, 0.5);
 }
 
 .btn-secondary {
-  border-width: 2px;
+  border-width: 2.5px;
+  border-color: rgba(212, 175, 55, 0.65);
 }
 
 .btn-whatsapp {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.98), rgba(181, 148, 58, 0.9));
-  color: #11110f;
-  box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, #25D366 95%, #20BA5A 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .btn-instagram {
-  background: linear-gradient(135deg, rgba(181, 148, 58, 0.95), rgba(212, 175, 55, 0.85));
-  color: #11110f;
-  box-shadow: var(--shadow-suave);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 45%, #F77737 60%, #FCAF45 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(243, 75, 125, 0.4);
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 /* Iconos dentro de los botones de contacto */
@@ -515,13 +543,23 @@ button {
 .btn-primary:hover,
 .btn-primary:focus-visible,
 .btn-secondary:hover,
-.btn-secondary:focus-visible,
-.btn-whatsapp:hover,
-.btn-whatsapp:focus-visible,
-.btn-instagram:hover,
-.btn-instagram:focus-visible {
+.btn-secondary:focus-visible {
   transform: translateY(-1px) translateZ(0);
   box-shadow: var(--shadow-suave-hover);
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp:focus-visible {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  background: linear-gradient(135deg, #23c263 95%, #1ea854 100%);
+}
+
+.btn-instagram:hover,
+.btn-instagram:focus-visible {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 6px 25px rgba(243, 75, 125, 0.5);
+  filter: brightness(1.05);
 }
 
 .btn-full {

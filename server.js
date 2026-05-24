@@ -152,6 +152,8 @@ app.post("/api/admin/login", loginLimiter, async (req, res) => {
     const user = sanitizeString(String(username || "")).toLowerCase();
     const pass = String(password || "").trim();
 
+    console.log("POST /api/admin/login - intento de login para:", user);
+
     if (!user || !pass) {
       return res.status(400).json({ ok: false, error: "Faltan usuario o contraseña" });
     }

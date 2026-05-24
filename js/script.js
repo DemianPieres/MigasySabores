@@ -14,19 +14,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Animación de entrada y ocultar loader tras 2.3s aprox
+  // Animación de entrada y ocultar loader tras 2.3s aprox (o tras el video en mobile)
   const LOADER_MS = 2300;
+  const loaderVideo = document.getElementById("loader-video");
+  const isMobileVideo = loaderVideo && window.matchMedia("(max-width: 767px)").matches;
+
+  function hideLoader() {
+    if (!loader || !mainContent) return;
+    loader.style.opacity = "0";
+    loader.style.pointerEvents = "none";
+    setTimeout(() => {
+      if (loader) loader.style.display = "none";
+    }, 400);
+    mainContent.classList.add("loaded");
+  }
 
   if (loader && mainContent) {
-    setTimeout(() => {
-      loader.style.opacity = "0";
-      loader.style.pointerEvents = "none";
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 400);
+    if (isMobileVideo) {
+      loaderVideo.addEventListener("ended", hideLoader);
+      loaderVideo.addEventListener("error", function () {
+        setTimeout(hideLoader, LOADER_MS);
+      });
 
-      mainContent.classList.add("loaded");
-    }, LOADER_MS);
+      var playPromise = loaderVideo.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () {
+          setTimeout(hideLoader, LOADER_MS);
+        });
+      }
+    } else {
+      setTimeout(hideLoader, LOADER_MS);
+    }
   }
 
   // Ajustar año del footer
