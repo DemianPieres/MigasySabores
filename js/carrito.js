@@ -301,7 +301,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const telefonoDestino = "5493825663023";
     const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(mensaje)}`;
 
-    window.open(url, "_blank");
+    window.location.href = url;
+
+    Carrito.limpiar();
+    checkoutForm.reset();
+    checkoutView.classList.add("is-hidden");
   });
 });
 
