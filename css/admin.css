@@ -563,3 +563,505 @@ body.admin-body {
   }
 }
 
+/* =============================================
+   MEJORAS MOBILE-FIRST
+   Touch-friendly · Card layout · Full responsive
+   ============================================= */
+
+/* ----------- Prevenir zoom automático en iOS ----------- */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  font-size: 16px;
+}
+
+/* ----------- Touch-friendly: área táctil mínima ----------- */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .modal-close {
+    min-height: 44px;
+  }
+
+  .btn-small {
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* ============================================
+   CARD LAYOUT – Tabla responsive (≤ 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .admin-table-wrapper {
+    overflow-x: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  .admin-table,
+  .admin-table thead,
+  .admin-table tbody,
+  .admin-table th,
+  .admin-table td,
+  .admin-table tr {
+    display: block;
+  }
+
+  .admin-table thead {
+    display: none;
+  }
+
+  .admin-table tbody tr {
+    border: 1px solid var(--admin-border);
+    border-radius: 14px;
+    padding: 0.85rem;
+    margin-bottom: 0.85rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.15s;
+  }
+
+  .admin-table tbody tr:hover {
+    background: rgba(212, 175, 55, 0.06);
+  }
+
+  .admin-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .admin-table td {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border: none;
+    width: 100% !important;
+    min-width: 0 !important;
+    text-align: left;
+    font-size: 0.82rem;
+  }
+
+  /* Etiquetas vía nth-child (sin modificar JS) */
+  .admin-table td:nth-child(1)::before { content: "Imagen"; }
+  .admin-table td:nth-child(2)::before { content: "Nombre"; }
+  .admin-table td:nth-child(3)::before { content: "Descripción"; }
+  .admin-table td:nth-child(4)::before { content: "P. minorista"; }
+  .admin-table td:nth-child(5)::before { content: "P. mayorista"; }
+  .admin-table td:nth-child(6)::before { content: "Acciones"; }
+
+  .admin-table td::before {
+    font-weight: 600;
+    color: var(--admin-muted);
+    font-size: 0.68rem;
+    min-width: 95px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .admin-table td:nth-child(1)::before,
+  .admin-table td:last-child::before,
+  .admin-table td:only-child::before {
+    display: none;
+  }
+
+  /* Celda de estado vacío/error ocupa todo el ancho */
+  .admin-empty-cell,
+  .admin-error-cell {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Imagen más grande y sin etiqueta */
+  .admin-table td:nth-child(1) {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .admin-product-image {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    border-radius: 12px;
+  }
+
+  /* Descripción sin truncado */
+  .admin-col-desc {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .admin-table td:nth-child(3) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .admin-table td:nth-child(3)::before {
+    min-width: auto;
+  }
+
+  .admin-prices {
+    white-space: normal;
+    font-weight: 500;
+  }
+
+  /* Acciones: fila completa con separador */
+  .admin-table td:last-child {
+    border-top: 1px solid rgba(212, 175, 55, 0.12);
+    padding-top: 0.65rem;
+    margin-top: 0.35rem;
+  }
+
+  .admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .admin-actions .btn {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+    min-height: 44px;
+    border-radius: 12px;
+  }
+
+  .admin-actions .btn-small {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================
+   MODAL – Mobile (≤ 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 18px;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    background: #11110f;
+    z-index: 2;
+    border-bottom: 1px solid var(--admin-border);
+  }
+
+  .modal-header h2 {
+    font-size: 1rem;
+  }
+
+  .modal-close {
+    font-size: 1.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+
+  .modal-close:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .modal-form {
+    padding: 0.8rem 1rem 1.2rem;
+  }
+
+  .form-grid {
+    gap: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .modal-footer {
+    position: sticky;
+    bottom: 0;
+    background: #11110f;
+    padding: 0.8rem 1rem 1.2rem;
+    gap: 0.6rem;
+    border-top: 1px solid var(--admin-border);
+  }
+
+  .modal-footer .btn {
+    flex: 1;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    min-height: 48px;
+    border-radius: 14px;
+  }
+
+  .image-preview {
+    min-height: 60px;
+  }
+}
+
+/* ============================================
+   HEADER – Mobile (≤ 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .admin-header {
+    padding: 0.65rem 0.9rem;
+    gap: 0.5rem;
+  }
+
+  .admin-header-left {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .admin-logo-wrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-brand-name {
+    font-size: 0.88rem;
+  }
+
+  .admin-brand-tagline {
+    font-size: 0.68rem;
+  }
+
+  .admin-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.4rem;
+  }
+
+  .admin-header-actions .btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+    min-height: 36px;
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   TOOLBAR / MAIN – Mobile (≤ 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .admin-main {
+    padding: 0.75rem 0.75rem 1.2rem;
+  }
+
+  .admin-toolbar {
+    margin-bottom: 0.85rem;
+  }
+
+  .admin-toolbar-left h2 {
+    font-size: 1.1rem;
+  }
+
+  .admin-toolbar-left p {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .admin-toolbar-right .btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.88rem;
+    min-height: 48px;
+    border-radius: 14px;
+  }
+
+  .admin-table-section {
+    padding: 0.5rem;
+    border-radius: 14px;
+  }
+}
+
+/* ============================================
+   LOGIN – Mobile (≤ 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .admin-login {
+    padding: 1rem;
+  }
+
+  .admin-card {
+    padding: 1.5rem 1.3rem 1.3rem;
+    border-radius: 16px;
+  }
+
+  .admin-title {
+    font-size: 1.35rem;
+  }
+
+  .admin-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+
+  .admin-form .form-group input {
+    font-size: 16px;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .admin-form .btn {
+    min-height: 48px;
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
+    border-radius: 14px;
+    margin-top: 0.2rem;
+  }
+}
+
+/* ============================================
+   SMALL PHONES (≤ 400px)
+   ============================================ */
+@media (max-width: 400px) {
+  .admin-header {
+    padding: 0.5rem 0.7rem;
+  }
+
+  .admin-logo-wrap {
+    width: 32px;
+    height: 32px;
+  }
+
+  .admin-brand-name {
+    font-size: 0.82rem;
+  }
+
+  .admin-brand-tagline {
+    font-size: 0.62rem;
+  }
+
+  .admin-header-actions .btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.72rem;
+    min-height: 32px;
+  }
+
+  .admin-main {
+    padding: 0.6rem 0.6rem 1rem;
+  }
+
+  .admin-toolbar-left h2 {
+    font-size: 1rem;
+  }
+
+  .admin-toolbar-left p {
+    font-size: 0.75rem;
+  }
+
+  .admin-table-section {
+    padding: 0.4rem;
+    border-radius: 12px;
+  }
+
+  .admin-table tbody tr {
+    padding: 0.7rem;
+    border-radius: 12px;
+  }
+
+  .admin-table td {
+    padding: 0.3rem 0;
+    font-size: 0.78rem;
+  }
+
+  .admin-table td::before {
+    font-size: 0.62rem;
+    min-width: 75px;
+  }
+
+  .admin-product-image {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .admin-actions .btn {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.6rem;
+    min-height: 38px;
+  }
+
+  .admin-card {
+    padding: 1.2rem 1rem 1.1rem;
+  }
+
+  .modal {
+    border-radius: 14px;
+  }
+
+  .modal-header {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .modal-form {
+    padding: 0.7rem 0.85rem 1rem;
+  }
+
+  .modal-footer {
+    padding: 0.7rem 0.85rem 1rem;
+    gap: 0.4rem;
+  }
+
+  .modal-footer .btn {
+    font-size: 0.82rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .admin-toolbar-right .btn {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.82rem;
+    min-height: 44px;
+  }
+
+  .admin-form .btn {
+    min-height: 44px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ============================================
+   SAFE AREA – Notch & home indicator
+   ============================================ */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .modal-form {
+    padding-bottom: max(0.8rem, env(safe-area-inset-bottom, 0.8rem));
+  }
+
+  .modal-footer {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+  }
+
+  .admin-main {
+    padding-bottom: max(1.2rem, env(safe-area-inset-bottom, 1.2rem));
+  }
+
+  .admin-login {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  }
+
+  .admin-header {
+    padding-top: max(0.65rem, env(safe-area-inset-top, 0.65rem));
+  }
+}
+
